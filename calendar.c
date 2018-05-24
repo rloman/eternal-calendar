@@ -7,11 +7,15 @@ char* mapWeekdayNumberToCanonicalName(int weekdayNumber);
 
 int main(int argc, char* argv[]) {
 
+	int weekday = calculateWeekday(argv[1]);
 
-	calculateWeekday(argv[1]);
+	printf("Weekday number is: %d\n", weekday);
+
+	char* canonicalMonthName = mapWeekdayNumberToCanonicalName(weekday);
+	
+	printf("Weekday name   is: %s\n", canonicalMonthName);
 
 	return 0;
-
 }
 
 int calculateWeekday(char* date) {
@@ -33,13 +37,8 @@ int calculateWeekday(char* date) {
 
 	int weekday = (d + (13*m-1)/5 + y + y/4 + c/4 + 5*c) %7;
 
-	printf("Weekday number is: %d\n", weekday);
+	return weekday;
 
-	char* canonicalMonthName = mapWeekdayNumberToCanonicalName(weekday);
-	
-	printf("Weekday name   is: %s\n", canonicalMonthName);
-
-	return 0;
 }
 
 char* mapWeekdayNumberToCanonicalName(int weekdayNumber) {
@@ -54,7 +53,3 @@ char* mapWeekdayNumberToCanonicalName(int weekdayNumber) {
 		case 6: return "Saturday";
 	}
 }
-
-
-
-
