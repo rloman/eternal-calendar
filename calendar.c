@@ -1,11 +1,18 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <regex.h>
 
 //forward declarations
 int calculateWeekday(char* date);
 char* mapWeekdayNumberToCanonicalName(int weekdayNumber);
 
 int main(int argc, char* argv[]) {
+
+	if(argc != 2) {
+		printf("Usage: weekday dd/mm/yyyy, e.g. weekday 23/05/1998\n");
+
+		return 1;
+	}
 
 	int weekday = calculateWeekday(argv[1]);
 
@@ -25,6 +32,8 @@ int calculateWeekday(char* date) {
 	int y; // year
 
 	sscanf(date, "%02d/%02d/%04d", &d, &m, &y);
+
+	// printf("day %d, month %d, year %d\n", d, m, y);
 
 	y = (m == 1 || m==2 ) ? y-1 : y;
 
